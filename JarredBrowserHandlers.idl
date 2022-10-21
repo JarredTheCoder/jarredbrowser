@@ -1,0 +1,69 @@
+// JarredBrowserHandlers.idl : IDL source for JarredBrowserHandlers
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (JarredBrowserHandlers.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+[
+	object,
+	uuid(5D700C3D-0E75-44F8-B89B-9585627FD6C1),
+	pointer_default(unique)
+]
+interface IPreview : IUnknown
+{
+};
+
+[
+	object,
+	uuid(22E6D8D8-D891-451D-9743-4C4DA2EF7C8F),
+	pointer_default(unique)
+]
+interface IThumbnail : IUnknown
+{
+};
+
+[
+	object,
+	uuid(61464977-D0D1-4A7B-BD1B-ACCC69E24D15),
+	pointer_default(unique)
+]
+interface ISearch : IUnknown
+{
+};
+
+[
+	uuid(0FA15EC8-B70B-4823-AED2-ADED180DAD22),
+	version(1.0),
+]
+library JarredBrowserHandlersLib
+{
+	importlib("stdole2.tlb");
+	[
+		uuid(22DE8E58-0BC1-49DE-8DCD-2C9F9E2109F7)
+	]
+	coclass Preview
+	{
+		[default] interface IPreviewHandler;
+	};
+	[
+		uuid(1C71462E-B57B-457B-B8D6-3042667CD7C6)
+	]
+	coclass Thumbnail
+	{
+		[default] interface IThumbnailProvider;
+	};
+	[
+		uuid(65F1ADA6-6BB5-4791-BC4E-C41C0E45396C)
+	]
+	coclass Search
+	{
+		[default] interface IFilter;
+	};
+};
+
+import "shobjidl.idl";
+import "thumbcache.idl";
+import "filter.idl";
