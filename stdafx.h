@@ -1,48 +1,59 @@
+
 // stdafx.h : include file for standard system include files,
 // or project specific include files that are used frequently,
 // but are changed infrequently
 
 #pragma once
 
-#ifndef STRICT
-#define STRICT
+#ifndef _SECURE_ATL
+#define _SECURE_ATL 1
+#endif
+
+#ifndef VC_EXTRALEAN
+#define VC_EXTRALEAN            // Exclude rarely-used stuff from Windows headers
 #endif
 
 #include "targetver.h"
 
-#define _ATL_APARTMENT_THREADED
-#define _ATL_NO_AUTOMATIC_NAMESPACE
+#define _ATL_CSTRING_EXPLICIT_CONSTRUCTORS      // some CString constructors will be explicit
 
-#define _ATL_CSTRING_EXPLICIT_CONSTRUCTORS	// some CString constructors will be explicit
+// turns off MFC's hiding of some common and often safely ignored warning messages
+#define _AFX_ALL_WARNINGS
 
-#ifdef _MANAGED
-#error File type handlers cannot be built as managed assemblies.  Set the Common Language Runtime options to no CLR support in project properties.
-#endif
+#include <afxwin.h>         // MFC core and standard components
+#include <afxext.h>         // MFC extensions
 
-#ifndef _UNICODE
-#error File type handlers must be built Unicode.  Set the Character Set option to Unicode in project properties.
-#endif
 
-#define SHARED_HANDLERS
+#include <afxdisp.h>        // MFC Automation classes
 
-#include <afxwin.h>
-#include <afxext.h>
-#include <afxole.h>
-#include <afxodlgs.h>
-#include <afxrich.h>
-#include <afxhtml.h>
-#include <afxcview.h>
-#include <afxwinappex.h>
-#include <afxframewndex.h>
-#include <afxmdiframewndex.h>
+
 
 #ifndef _AFX_NO_OLE_SUPPORT
-#include <afxdisp.h>        // MFC Automation classes
-#endif // _AFX_NO_OLE_SUPPORT
+#include <afxdtctl.h>           // MFC support for Internet Explorer 4 Common Controls
+#endif
+#ifndef _AFX_NO_AFXCMN_SUPPORT
+#include <afxcmn.h>             // MFC support for Windows Common Controls
+#endif // _AFX_NO_AFXCMN_SUPPORT
 
-#define ATL_NO_ASSERT_ON_DESTROY_NONEXISTENT_WINDOW
+#include <afxcontrolbars.h>     // MFC support for ribbons and control bars
 
-#include "resource.h"
-#include <atlbase.h>
-#include <atlcom.h>
-#include <atlctl.h>
+#include <afxhtml.h>                    // MFC HTML view support
+
+
+
+
+
+
+
+
+#ifdef _UNICODE
+#if defined _M_IX86
+#pragma comment(linker,"/manifestdependency:\"type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' processorArchitecture='x86' publicKeyToken='6595b64144ccf1df' language='*'\"")
+#elif defined _M_X64
+#pragma comment(linker,"/manifestdependency:\"type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' processorArchitecture='amd64' publicKeyToken='6595b64144ccf1df' language='*'\"")
+#else
+#pragma comment(linker,"/manifestdependency:\"type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' processorArchitecture='*' publicKeyToken='6595b64144ccf1df' language='*'\"")
+#endif
+#endif
+
+
